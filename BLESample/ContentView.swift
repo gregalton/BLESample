@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject private var bluetoothViewModel = BluetoothViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List(bluetoothViewModel.peripheralNames, id: \.self) { peripheral in
+                Text(peripheral)
+            }
         }
-        .padding()
+        .navigationTitle("Peripherals")
     }
 }
 
